@@ -1,0 +1,36 @@
+
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // ✅ ES Module + Node.js compatible setup
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+
+    // ✅ Important for http, express, etc types
+    "lib": ["ESNext"],
+    "types": ["node"],
+
+    // ✅ Output settings
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+   
+    // ✅ Strict Type Safety
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // ✅ Allow modern import syntax
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+
+    // ✅ Prevent TS complaining about import/export issue
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true
+  }
+}
