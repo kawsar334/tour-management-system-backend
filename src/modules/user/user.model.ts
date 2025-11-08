@@ -1,5 +1,4 @@
 
-
 import { model, Model, Schema } from "mongoose";
 import { IAuthProvider, IsActive, IUser, Role } from "./user.interface.js";
 
