@@ -1,24 +1,22 @@
-
 {
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
 
-    // ✅ ES Module + Node.js compatible setup
+    // ✅ Node.js + ES Module setup
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ESNext",
 
-    // ✅ Important for http, express, etc types
+    // ✅ Important for Express, HTTP, etc.
     "lib": ["ESNext"],
-    "types": ["node"],
+    "types": ["node", "express"],
 
-    // ✅ Output settings
+    // ✅ Output
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
 
-   
     // ✅ Strict Type Safety
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -29,8 +27,14 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
 
-    // ✅ Prevent TS complaining about import/export issue
+    // ✅ For ESM + TypeScript compatibility
     "verbatimModuleSyntax": false,
-    "isolatedModules": true
-  }
+    "isolatedModules": true,
+
+    // ✅ Recommended for cleaner imports
+    "allowJs": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

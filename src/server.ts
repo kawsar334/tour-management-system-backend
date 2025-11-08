@@ -1,9 +1,9 @@
 import express, { type Request, type Response } from 'express'
-import app from "./app.js";
 import { Server } from "http";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { envVars } from './config/env.js';
+import app from './app.js';
 dotenv.config();
 let server: Server;
 
