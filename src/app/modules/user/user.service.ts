@@ -5,7 +5,8 @@ const createUser = async (payload: Partial<IUser>) => {
   const { name, email, ...rest } = payload;
   const isUserExist = await User.findOne({ email });
   const user = await User.create({
-    name, email, ...rest
+    email,
+    name, ...rest 
   });
   return user;
 };
