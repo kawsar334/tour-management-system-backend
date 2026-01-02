@@ -13,6 +13,6 @@ interface Tresponse <T>{
 }
 
 
-const sendResponse =<T>(res:Response, data:Tresponse)=>{
+const sendResponse =<T>(res:Response, data:Tresponse<T>)=>{
     
 }

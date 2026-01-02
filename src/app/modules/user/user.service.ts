@@ -6,14 +6,18 @@ const createUser = async (payload: Partial<IUser>) => {
   const isUserExist = await User.findOne({ email });
   const user = await User.create({
     email,
-    name, ...rest 
+    name,
+    ...rest,
   });
   return user;
 };
 
-
+const getAllUser = async () => {
+ const users = await User.find();
+ return users ;
+};
 
 export const userServices = {
-    createUser,
-
-}
+  createUser,
+  getAllUser,
+};
