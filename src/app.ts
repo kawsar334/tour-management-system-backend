@@ -1,15 +1,18 @@
-// import cors from "cors";
-import express,{Request, Response} from "express";
+import cors from "cors";
+import { User } from "./app/modules/user/user.model.js";
+import { userServices } from "./app/modules/user/user.service.js";
 import { router } from "./app/routes/index.js";
-
+import express, { NextFunction, Request, Response } from "express";
+import { globalError } from "./app/middleware/globalError.js";
+import { notFound } from "./app/middleware/Notfound.js";
 const app = express();
-// app.use(cors());
 app.use(express.json());
-app.use("/api/v1", router)
+app.use(cors());
+app.use("/api/v1", router);
 
-app.get("/",(req:Request,res:Response)=>{
-    res.json({message :"hello"})
+app.use(globalError);
 
-});
 
-export default app ;
+app.use(notFound);
+
+export default app;
