@@ -11,8 +11,6 @@ app.use(cors());
 app.use("/api/v1", router);
 
 app.use(globalError);
-
-
 app.use(notFound);
 
 export default app;

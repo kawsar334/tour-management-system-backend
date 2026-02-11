@@ -2,31 +2,39 @@ import bcrypt from "bcryptjs";
 import { AppError } from "../../../utils/AppError.js";
 import { IUser } from "../user/user.interface.js";
 import { User } from "../user/user.model.js";
+import jwt from "jsonwebtoken";
+import { generateToken} from "../../../utils/jwt.js";
+import { envVars } from "../../config/env.js";
 
 
+const credentialsLogin = async (payload: Partial<IUser>) => {
+  const { email, password, ...others } = payload;
+  const isUserExist = await User.findOne({ email });
 
-const credentialsLogin = async(payload:Partial<IUser>)=>{
-const {email, password, ...others} = payload;
-    const isUserExist = await User.findOne({email});
+  if (!isUserExist) {
+    throw new AppError(409, "user dosen't exist ");
+  }
+  const isMatch = await bcrypt.compare(
+    password as string,
+    isUserExist.password as string
+  );
+  if (!isMatch) {
+    throw new AppError(400, "invalid credentials  !");
+  }
+  const jwtInfo = {
+    userId:isUserExist._id,
+    email:isUserExist.email,
+    role:isUserExist.role,
+  };
+const accessToken = generateToken(jwtInfo, envVars.SECRETE as string,"1d")
+ 
+  return {
+    email,
+    others,
+    accessToken,
+  };
+};
 
-    if(!isUserExist){
-      throw new  AppError(409,"user dosen't exist ");
-    };
-    const isMatch = await bcrypt.compare(password as string, isUserExist.password as string);
-    if(!isMatch){
-        throw new AppError(400, "invalid credentials  !")
-    };
-    
-
-    return {
-        email,
-        others , 
-
-    }
-
-}
-
-
- export const authServices = {
-    credentialsLogin,
-}
+export const authServices = {
+  credentialsLogin,
+};
